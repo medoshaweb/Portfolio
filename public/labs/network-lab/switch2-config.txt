@@ -1,0 +1,46 @@
+! SWITCH2 - Access and Trunk setup
+conf t
+ hostname SW2
+ no ip domain-lookup
+
+! VLANs (mirror SW1)
+ vlan 10
+  name USERS
+ vlan 20
+  name SERVERS
+ vlan 30
+  name MGMT
+ exit
+
+! Access ports (example FastEthernet0/1-8 for VLAN 10)
+ interface range f0/1 - 8
+  switchport mode access
+  switchport access vlan 10
+  spanning-tree portfast
+ exit
+
+! Access ports (example FastEthernet0/9-12 for VLAN 20)
+ interface range f0/9 - 12
+  switchport mode access
+  switchport access vlan 20
+  spanning-tree portfast
+ exit
+
+! Management SVI (optional)
+ interface vlan 30
+  ip address 192.168.30.12 255.255.255.0
+  no shutdown
+ exit
+
+! Uplink to SW1 (trunk)
+ interface f0/24
+  switchport trunk encapsulation dot1q
+  switchport mode trunk
+  switchport trunk native vlan 30
+  switchport trunk allowed vlan 10,20,30
+ exit
+
+end
+wr
+
+

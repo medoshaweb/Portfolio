@@ -1,0 +1,7 @@
+# Basic Suricata rules for lab demonstration
+# Adjust HOME_NET/EXTERNAL_NET in suricata.yaml
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"Nmap SYN Scan"; flags:S; threshold:type both, track by_src, count 10, seconds 5; classtype:network-scan; sid:100001; rev:1;)
+alert http any any -> $HOME_NET any (msg:"SQLi pattern"; content:"union select"; http_uri; nocase; classtype:web-application-attack; sid:100002; rev:1;)
+alert http any any -> $HOME_NET any (msg:"SQLi OR 1=1"; content:"or 1=1"; http_uri; nocase; classtype:web-application-attack; sid:100003; rev:1;)
+

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Defensive Cybersecurity Lab</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; margin: 24px; line-height: 1.6; color: #111; }
+      h1, h2, h3 { color: #0f5132; }
+      code, pre { background: #f6f8fa; border: 1px solid #e5e7eb; border-radius: 6px; }
+      pre { padding: 12px; overflow: auto; }
+      a.button { display: inline-block; margin: 6px 8px 6px 0; padding: 8px 12px; border-radius: 6px; border: 1px solid #198754; color: #198754; text-decoration: none; font-weight: 600; }
+      a.button.primary { background: #198754; color: white; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+      .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 14px; background: #fff; }
+      .muted { color: #6b7280; }
+    </style>
+  </head>
+  <body>
+    <h1>Defensive Cybersecurity Lab</h1>
+    <p class="muted">Blue team walkthrough: logging, detection engineering, network security monitoring, and incident response.</p>
+
+    <div>
+      <a class="button primary" href="suricata-rules.txt" download>Download Suricata Rules</a>
+      <a class="button" href="windows-audit-policy.txt" download>Windows Audit Policy (sample)</a>
+      <a class="button" href="wireshark-filters.txt" download>Wireshark Filter Pack</a>
+      <a class="button" href="elk-pipelines.txt" download>ELK Ingest Pipelines (sample)</a>
+    </div>
+
+    <h2>Lab Setup</h2>
+    <ul>
+      <li>Sensor: Ubuntu VM with Suricata + Filebeat</li>
+      <li>SIEM: ELK stack (Elastic Cloud trial or local Docker)</li>
+      <li>Endpoints: One Windows test VM with Sysmon + Winlogbeat</li>
+    </ul>
+
+    <h2>Detection Scenarios</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>1) Network Scanning Detection</h3>
+        <p>Detect Nmap SYN scans from attacker subnet.</p>
+        <pre><code># Suricata rule example (see download)
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"Nmap SYN Scan"; flags:S; threshold:type both, track by_src, count 10, seconds 5; classtype:network-scan; sid:100001; rev:1;)</code></pre>
+      </div>
+      <div class="card">
+        <h3>2) Suspicious Web Requests</h3>
+        <p>Flag SQLi-like patterns in HTTP URIs.</p>
+        <pre><code>alert http any any -> $HOME_NET any (msg:"SQLi pattern"; content:"union select"; http_uri; nocase; sid:100002; rev:1;)</code></pre>
+      </div>
+      <div class="card">
+        <h3>3) Endpoint Telemetry (Sysmon)</h3>
+        <p>Detect suspicious process trees (e.g., cmd launching PowerShell with encoded commands).</p>
+        <pre><code># Windows Event ID 4688/1 (Sysmon) via Winlogbeat -> SIEM
+"process.name: powershell.exe AND event.original: -enc"</code></pre>
+      </div>
+      <div class="card">
+        <h3>4) Incident Response</h3>
+        <p>Capture PCAP, extract IOCs, pivot in SIEM dashboards, and apply blocking (firewall/WAF).</p>
+        <pre><code>tshark -i eth0 -a duration:120 -w capture.pcap
+zeek -r capture.pcap</code></pre>
+      </div>
+    </div>
+
+    <h2>Dashboards</h2>
+    <ul>
+      <li>ELK: Create visualizations for Suricata alerts by signature, source IP, and HTTP URI.</li>
+      <li>Windows: Process creations over time and parent-child relationships.</li>
+    </ul>
+
+    <h2>Hardening Tips</h2>
+    <ul>
+      <li>Implement network segmentation and strict egress filtering.</li>
+      <li>Enable MFA, disable legacy protocols, audit admin groups.</li>
+      <li>Patch cadence and vulnerability management (SLAs).</li>
+    </ul>
+
+    <h2>Notes</h2>
+    <p>These resources are simplified for lab purposes. Adjust IPs, paths, and pipeline names to your environment.</p>
+  </body>
+  </html>
+
+

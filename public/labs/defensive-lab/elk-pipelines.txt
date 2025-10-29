@@ -1,0 +1,20 @@
+# Sample Logstash pipeline snippets (adjust indices/paths)
+
+input {
+  beats { port => 5044 }
+}
+
+filter {
+  # Example: tag Suricata alerts by signature
+  if [event][module] == "suricata" and [suricata][eve][alert][signature] {
+    mutate { add_tag => ["suricata_alert"] }
+  }
+}
+
+output {
+  elasticsearch {
+    hosts => ["http://localhost:9200"]
+    index => "%{[@metadata][beat]}-%{+YYYY.MM.dd}"
+  }
+}
+

@@ -1,0 +1,77 @@
+! EDGE FIREWALL - Example using Cisco IOS extended ACLs
+conf t
+ hostname FW
+ no ip domain-lookup
+
+! Inside towards Router
+ interface g0/0
+  ip address 10.0.0.1 255.255.255.252
+  no shutdown
+ exit
+
+! Outside towards Internet (simulated)
+ interface g0/1
+  ip address 203.0.113.2 255.255.255.248
+  no shutdown
+ exit
+
+! NAT/PAT (optional for Packet Tracer if supported)
+ ip access-list standard INSIDE-NAT
+  permit 192.168.10.0 0.0.0.255
+  permit 192.168.20.0 0.0.0.255
+  permit 192.168.30.0 0.0.0.255
+ exit
+ ip nat inside source list INSIDE-NAT interface g0/1 overload
+ interface g0/0
+  ip nat inside
+ exit
+ interface g0/1
+  ip nat outside
+ exit
+
+! SECURITY: Extended ACL to restrict outbound and inter-VLAN sensitive ports
+ ip access-list extended OUTBOUND-POLICY
+  remark Permit established/necessary traffic
+  permit tcp 192.168.0.0 0.0.255.255 any eq 443
+  permit udp 192.168.0.0 0.0.255.255 any eq domain
+  permit icmp 192.168.0.0 0.0.255.255 any echo
+  permit icmp any 192.168.0.0 0.0.255.255 echo-reply
+  remark Deny SMB and Telnet outbound
+  deny tcp 192.168.0.0 0.0.255.255 any eq 445
+  deny tcp 192.168.0.0 0.0.255.255 any eq 139
+  deny tcp 192.168.0.0 0.0.255.255 any eq 23
+  remark Permit the rest (optional) or tighten further
+  permit ip 192.168.0.0 0.0.255.255 any
+ exit
+
+ ip access-list extended INTERVLAN-POLICY
+  remark Allow VLAN10 to reach VLAN20 only via HTTPS
+  permit tcp 192.168.10.0 0.0.0.255 192.168.20.0 0.0.0.255 eq 443
+  remark Deny other direct access from VLAN10 to VLAN20
+  deny ip 192.168.10.0 0.0.0.255 192.168.20.0 0.0.0.255
+  remark Allow management VLAN to reach all
+  permit ip 192.168.30.0 0.0.0.255 any
+  remark Permit return traffic
+  permit tcp any 192.168.0.0 0.0.255.255 established
+  permit icmp any 192.168.0.0 0.0.255.255
+  remark Default deny
+  deny ip any any
+ exit
+
+! Apply OUTBOUND policy to outside interface inbound
+ interface g0/1
+  ip access-group OUTBOUND-POLICY in
+ exit
+
+! Apply INTERVLAN policy towards inside interface inbound
+ interface g0/0
+  ip access-group INTERVLAN-POLICY in
+ exit
+
+! Default route to ISP
+ ip route 0.0.0.0 0.0.0.0 203.0.113.1
+
+end
+wr
+
+

@@ -1,0 +1,23 @@
+# Sample Windows audit policy (Local Security Policy -> Advanced Audit)
+# Configure via Group Policy or secpol.msc
+
+Account Logon
+  Audit Credential Validation: Success, Failure
+
+Logon/Logoff
+  Audit Logon: Success, Failure
+  Audit Special Logon: Success
+
+Object Access
+  Audit File System: Failure
+
+Policy Change
+  Audit Authentication Policy Change: Success
+
+Privilege Use
+  Audit Sensitive Privilege Use: Failure
+
+Detailed Tracking
+  Audit Process Creation: Success
+  (Enable command line in process creation events)
+

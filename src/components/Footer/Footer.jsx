@@ -32,18 +32,18 @@ export default function Footer() {
         >
           <i className="fab fa-github"></i>
         </a>
-        <a
+        {/* <a
           href="https://twitter.com/your-handle"
           target="_blank"
           rel="noreferrer"
         >
           <i className="fab fa-twitter"></i>
-        </a>
+        </a> */}
       </div>
       <div>
-        © {new Date().getFullYear()} Hailu — Network Admin & Full-Stack Dev{" "}
+        © {new Date().getFullYear()} Hailu — All Rights Reserved | Network Admin & Full-Stack Dev{" "}
       </div>
-      {/* <p>© 2025 Your Name | All Rights Reserved</p> */}
+     
     </footer>
   );
 }

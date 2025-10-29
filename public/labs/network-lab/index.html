@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Network Lab: VLANs, Routing, and Firewall</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; margin: 24px; line-height: 1.6; color: #111; }
+      h1, h2, h3 { color: #0f5132; }
+      code, pre { background: #f6f8fa; border: 1px solid #e5e7eb; border-radius: 6px; }
+      pre { padding: 12px; overflow: auto; }
+      a.button { display: inline-block; margin: 6px 8px 6px 0; padding: 8px 12px; border-radius: 6px; border: 1px solid #198754; color: #198754; text-decoration: none; font-weight: 600; }
+      a.button.primary { background: #198754; color: white; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+      .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 14px; background: #fff; }
+      .muted { color: #6b7280; }
+    </style>
+  </head>
+  <body>
+    <h1>Network Lab: VLANs, Inter-VLAN Routing, and Firewall ACLs</h1>
+    <p class="muted">Cisco Packet Tracer lab with two access switches, one router-on-a-stick, and an edge firewall.</p>
+
+    <div>
+      <a class="button primary" href="switch1-config.txt" download>Download Switch1 Config</a>
+      <a class="button primary" href="switch2-config.txt" download>Download Switch2 Config</a>
+      <a class="button primary" href="router-config.txt" download>Download Router Config</a>
+      <a class="button primary" href="firewall-acl.txt" download>Download Firewall ACLs</a>
+    </div>
+
+    <h2>Topology</h2>
+    <ul>
+      <li>VLAN 10: Users (192.168.10.0/24)</li>
+      <li>VLAN 20: Servers (192.168.20.0/24)</li>
+      <li>VLAN 30: Management (192.168.30.0/24)</li>
+      <li>ROAS on Router G0/0 subinterfaces (.1 gateways)</li>
+      <li>Edge firewall between Router G0/1 and Internet (simulated)</li>
+    </ul>
+
+    <h2>Goals</h2>
+    <ol>
+      <li>Create VLANs and assign access ports on both switches.</li>
+      <li>Configure trunk between switches and to the router.</li>
+      <li>Configure router-on-a-stick for inter-VLAN routing and DHCP pools.</li>
+      <li>Apply firewall ACLs to restrict traffic between VLANs and outbound.</li>
+    </ol>
+
+    <h2>Quick Start</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>1) Switches</h3>
+        <p>Copy the corresponding config to each switch console. Make sure uplinks use trunking and correct native VLAN.</p>
+        <pre><code>copy paste switch1-config.txt
+copy paste switch2-config.txt</code></pre>
+      </div>
+      <div class="card">
+        <h3>2) Router</h3>
+        <p>Apply subinterfaces for each VLAN with gateway IPs and enable DHCP pools.</p>
+        <pre><code>copy paste router-config.txt</code></pre>
+      </div>
+      <div class="card">
+        <h3>3) Firewall</h3>
+        <p>Deploy extended ACLs to permit required traffic and deny the rest.</p>
+        <pre><code>copy paste firewall-acl.txt</code></pre>
+      </div>
+    </div>
+
+    <h2>Verification</h2>
+    <ul>
+      <li>From a VLAN 10 host, ping its gateway (192.168.10.1) and a VLAN 20 server.</li>
+      <li>Ensure DHCP leases are obtained per VLAN.</li>
+      <li>Test that blocked ports (e.g., SMB) are denied by ACLs.</li>
+      <li>Allow HTTPS to Internet via firewall; HTTP optionally blocked.</li>
+    </ul>
+
+    <h2>Notes</h2>
+    <p>These are baseline configs meant for Packet Tracer. Interface names may vary with your selected device models—adjust accordingly.</p>
+  </body>
+  </html>
+
+

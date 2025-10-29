@@ -1,0 +1,7 @@
+# Useful Wireshark filters
+
+tcp.flags.syn == 1 and tcp.flags.ack == 0
+http.request.method == "POST"
+dns.qry.name contains "unknown-domain"
+frame contains "union select"
+

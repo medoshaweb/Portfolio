@@ -1,0 +1,9 @@
+# Nmap 7.94 scan initiated ...
+Nmap scan report for 127.0.0.1
+Host is up.
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 9.x
+80/tcp   open  http    Node.js Express
+3000/tcp open  http    OWASP Juice Shop
+Service detection performed.
+
