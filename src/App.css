@@ -1,0 +1,24 @@
+/* Prevent horizontal scroll */
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* Center content */
+.app-container {
+  max-width: 1500px; /* controls maximum width */
+  margin: 0 auto;    /* centers horizontally */
+  padding: 0 20px;   /* space for small screens */
+}
+
+/* Optional: Make sections full-width background but centered content */
+section {
+  width: 100%;
+}
+
+section > * {
+  max-width: 1200px;
+  margin: 0 auto;
+}

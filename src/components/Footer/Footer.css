@@ -1,0 +1,15 @@
+.social-icons a {
+  color: #333;
+  margin: 0 10px;
+  font-size: 1.5rem;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  color: #0077b5; /* LinkedIn blue or your theme color */
+  transform: scale(1.1);
+}
+.fab {
+  color: #80db66;
+  font-size: 2rem;
+}

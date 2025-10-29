@@ -1,0 +1,19 @@
+
+.btn-outline-primary {
+  --bs-btn-color: #80db66;
+  --bs-btn-border-color: none;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #80db66;
+}
+.btn-outline-primary:hover {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #80db66;
+  --bs-btn-border-color: #80db66;
+}
+.btn-outline-primary:focus {
+  --bs-btn-box-shadow: 0 0 0 0.25rem rgba(128, 219, 102, 0.5);
+}
+.moonsun {
+  font-size: 1.5rem;
+  
+}
