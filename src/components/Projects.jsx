@@ -119,18 +119,21 @@ export default function Projects() {
       desc: "A full-stack MERN discussion platform with JWT authentication.",
       image: "/projects/evangadi.png", // ✅ Your project thumbnail (put inside public/projects/)
       link: "https://github.com/medoshaweb/evangadi-forum",
+      live: "https://evangadi-forum-demo.example.com",
     },
     {
       title: "Apple Website Clone",
       desc: "Responsive React + Bootstrap replica with animations and product carousel.",
       image: "/projects/apple.png",
       link: "https://github.com/medoshaweb/apple-react-routing",
+      live: "https://apple-clone-demo.example.com",
     },
     {
       title: "Amazon Website Clone",
       desc: "Full-stack Amazon clone (MERN) with user login, product catalog, shopping cart, and backend order management.",
       image: "/projects/amazon.png",
       link: "https://github.com/medoshaweb/amazon-react-routing.git",
+      live: "https://amazon-clone-demo.example.com",
     },
     {
       title: "Apple Website Clone",
@@ -172,7 +175,7 @@ export default function Projects() {
                 color: theme === "dark" ? "#fff" : "#000",
               }}
             >
-              <a href={p.link} target="_blank" rel="noopener noreferrer">
+              <a href={p.live || p.link} target="_blank" rel="noopener noreferrer">
                 <img
                   src={p.image}
                   alt={p.title}
@@ -190,15 +193,28 @@ export default function Projects() {
                   {p.title}
                 </h5>
                 <p className="card-text">{p.desc}</p>
-                <a
-                  href={p.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-outline-light btn-sm"
-                  style={{ color: "#80db66" }}
-                >
-                  View Project
-                </a>
+                <div className="d-flex gap-2">
+                  {p.live && (
+                    <a
+                      href={p.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-sm btn-success"
+                      style={{ backgroundColor: "#80db66", borderColor: "#80db66" }}
+                    >
+                      Live
+                    </a>
+                  )}
+                  <a
+                    href={p.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-outline-light btn-sm"
+                    style={{ color: "#80db66" }}
+                  >
+                    Code
+                  </a>
+                </div>
               </div>
             </div>
           </Motion.div>
