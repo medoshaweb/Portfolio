@@ -12,6 +12,7 @@ import {
   FaJs,
 } from "react-icons/fa";
 import "./hero.css";
+import profilePic from "../../assets/firstimage.jpg";
 
 export default function Hero() {
   const orbitIcons = [
@@ -48,7 +49,7 @@ export default function Hero() {
       {/* Hero Content */}
       <div className="hero-content">
         <motion.img
-          src="../../../src/assets/firstimage.jpg"
+          src={profilePic}
           alt="Hailu"
           className="profile-pic"
           initial={{ y: -10 }}

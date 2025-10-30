@@ -8,6 +8,7 @@ import "aos/dist/aos.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./navbar.css";
+import logo from "../../assets/logo-no-background.png"
   
 const Navbar = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -69,7 +70,7 @@ const Navbar = () => {
         <div className="container">
           <a href="#home" className="navbar-brand fw-bold text-primary fs-4">
             <img
-              src="../../../src/assets/logo-no-background.png"
+              src={logo}
               width="70"
               alt="medoshaweb"
             />

@@ -1,6 +1,10 @@
 import React from "react";
  
 import { motion as Motion } from "framer-motion";
+import aboutPic from "../../assets/about.jpg";
+import networkAdmin from "../../assets/network administration.png";
+import cybersecurity from "../../assets/cybersecurity.png";
+import mern from "../../assets/mern.png"; 
 
 export default function About() {
   return (
@@ -13,7 +17,7 @@ export default function About() {
       >
         <div className="col-md-3 text-center">
           <img
-            src="../../../src/assets/about.jpg" 
+            src={aboutPic}
             alt="Hailu"
             className="rounded-circle img-fluid"
           />
@@ -39,9 +43,9 @@ export default function About() {
             impact.
           </p>
           <div className="mt-3 d-flex flex-wrap gap-5">
-            <span className=""><img src="../../../src/assets/network administration.png" alt="Network Admin" width={200} /></span>
-            <span className=""><img src="../../../src/assets/cybersecurity.png" alt="Cybersecurity" width={200}/></span>
-            <span className=""><img src="../../../src/assets/mern.png" alt="MERN Stack" width={200} /></span>
+            <span className=""><img src={networkAdmin} alt="Network Admin" width={200} /></span>
+            <span className=""><img src={cybersecurity} alt="Cybersecurity" width={200}/></span>
+            <span className=""><img src={mern} alt="MERN Stack" width={200} /></span>
           </div>
         </div>
       </Motion.div>
