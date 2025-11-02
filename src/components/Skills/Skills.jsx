@@ -21,44 +21,54 @@ export default function Skills() {
   const webSkills = [
     {
       name: "React",
-      icon: <FaReact style={{ color: "#2aadd1" }} />,
+      icon: <FaReact style={{ color: "#61DAFB" }} />,
       level: 80,
     },
     {
       name: "Node.js",
-      icon: <FaNodeJs style={{ color: "#3c873a" }} />,
+      icon: <FaNodeJs style={{ color: "#339933" }} />,
+      level: 75,
+    },
+    {
+      name: "Express",
+      icon: <span style={{ color: "#000", fontWeight: "bold" }}>EX</span>,
       level: 70,
     },
     {
       name: "MySQL",
-      icon: <SiMysql style={{ color: "#264de4" }} />,
+      icon: <SiMysql style={{ color: "#4479A1" }} />,
       level: 85,
     },
     {
+      name: "MongoDB",
+      icon: <span style={{ color: "#47A248", fontWeight: "bold" }}>M</span>,
+      level: 75,
+    },
+    {
       name: "HTML5",
-      icon: <FaHtml5 style={{ color: "#e34c26" }} />,
+      icon: <FaHtml5 style={{ color: "#E34F26" }} />,
       level: 90,
     },
     {
       name: "JavaScript",
-      icon: <FaJs style={{ color: "#f0db4f" }} />,
+      icon: <FaJs style={{ color: "#F7DF1E" }} />,
       level: 85,
     },
     {
       name: "Bootstrap",
-      icon: <FaBootstrap style={{ color: "#563d7c" }} />,
+      icon: <FaBootstrap style={{ color: "#7952B3" }} />,
       level: 75,
     },
     {
       name: "CSS3",
-      icon: <FaCss3Alt style={{ color: "#264de4" }} />,
+      icon: <FaCss3Alt style={{ color: "#1572B6" }} />,
       level: 85,
     },
     {
       name: "Git & GitHub",
       icon: (
         <span className="d-flex align-items-center" style={{ gap: "6px" }}>
-          <FaGitAlt style={{ color: "#f1502f" }} />
+          <FaGitAlt style={{ color: "#F05032" }} />
           <FaGithub style={{ color: "#181717" }} />
         </span>
       ),
@@ -130,13 +140,22 @@ export default function Skills() {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
       >
-        <h3 className="fw-bold mb-4" style={{ color: "#80db66" }}>
-          Skills
-        </h3>
+        <div className="text-center mb-5">
+          <h2 className="fw-bold mb-2" style={{ color: "#80db66", fontSize: "2.5rem" }}>
+            Skills & Expertise
+          </h2>
+          <div className="divider mx-auto"></div>
+          <p className="mt-3 lead">A comprehensive overview of my technical and professional capabilities</p>
+        </div>
         <div className="row g-4 justify-content-center">
-          <h4>Technical Skills</h4>
+          <div className="col-12 mb-4">
+            <h4 className="text-center mb-4" style={{ color: "#80db66" }}>
+              Technical Skills
+            </h4>
+          </div>
           {/* Web Development */}
           <div className="col-md-6 d-flex flex-wrap justify-content-center gap-4">
+            <h5 className="w-100 text-center mb-3" style={{ color: "#e0e9e3" }}>Web Development</h5>
             {webSkills.map((skill, i) => (
               <Motion.div
                 key={i}
@@ -170,6 +189,7 @@ export default function Skills() {
 
           {/* Networking & Security */}
           <div className="col-md-6 d-flex flex-wrap justify-content-center gap-4">
+            <h5 className="w-100 text-center mb-3" style={{ color: "#e0e9e3" }}>Network & Security</h5>
             {networkSkills.map((skill, i) => (
               <Motion.div
                 key={i}
@@ -200,10 +220,14 @@ export default function Skills() {
               </Motion.div>
             ))}
           </div>
-          <div className="row g-4 justify-content-center">
-            <h4>Soft Skills</h4>
+          <div className="row g-4 justify-content-center mt-4">
+            <div className="col-12 mb-4">
+              <h4 className="text-center mb-4" style={{ color: "#80db66" }}>
+                Professional Skills
+              </h4>
+            </div>
             {/* Soft Skills */}
-            <div className="col-md-6 d-flex flex-wrap justify-content-center gap-4">
+            <div className="col-md-12 d-flex flex-wrap justify-content-center gap-4">
               {softSkills.map((skill, i) => (
                 <Motion.div
                   key={i}

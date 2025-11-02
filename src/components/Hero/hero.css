@@ -18,7 +18,8 @@
   height: 200px;
   border-radius: 30%;
   object-fit: cover;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  margin-top: 115px;
   border: 4px solid #80db66;
 } 
 .hero-title {
@@ -38,21 +39,93 @@
   color: #80db66;
 }
 
-.hero-btn {
-  display: inline-block;
-  background-color: #80db66;
-  color: #fff;
-  padding: 12px 25px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  margin-bottom: 10px;
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 40px;
 }
 
-.hero-btn:hover {
-  background-color: #80db66;
-  box-shadow: 0 0 15px #80db66;
+.hero-btn {
+  display: inline-block;
+  padding: 14px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.hero-btn.primary {
+  background: linear-gradient(135deg, #80db66 0%, #6ba876 100%);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(128, 219, 102, 0.3);
+}
+
+.hero-btn.primary:hover {
+  box-shadow: 0 6px 20px rgba(128, 219, 102, 0.5);
+  transform: translateY(-2px);
+}
+
+
+
+.hero-btn.outline {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.hero-btn.outline:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Stats Section */
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 120px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(128, 219, 102, 0.2);
+  min-width: 120px;
+  transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+  border-color: rgba(128, 219, 102, 0.5);
+}
+
+.stat-item h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #80db66;
+  margin: 0;
+  background: linear-gradient(135deg, #80db66 0%, #6ba876 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-item p {
+  margin: 5px 0 0 0;
+  color: #e0e9e3;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 @media (max-width: 768px) {
   .hero-title {
@@ -70,7 +143,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      overflow: visible; /* allow icons to move outside */
+      overflow: hidden; /* hide overflow for horizontal scroll */
       background: linear-gradient(1deg, #0f2711, #6ba876, #2c5364);
     }
 
@@ -93,15 +166,64 @@
       z-index: 3;
     }
 
-    /* Orbiting icons */
-    .orbit-icon {
+    /* Horizontal scrolling icons container */
+    .scroll-container {
       position: absolute;
-      top: 150%;
-      left: 100%;
-      font-size: 6rem;
-      color: #e0e9e3;
-      transform: translate(-50%, -50%); /* center each icon initially */
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      overflow: hidden;
       z-index: 1;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .scroll-icons-wrapper {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      height: 100%;
+      will-change: transform;
+      width: fit-content;
+      position: absolute;
+      right: 0;
+      animation: scrollHorizontal 20s linear infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes scrollHorizontal {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-2520px);
+      }
+    }
+
+    /* Rounded circle icons */
+    .scroll-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: rgba(128, 219, 102, 0.2);
+      backdrop-filter: blur(10px);
+      border: 2px solid #80db66;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .scroll-icon:hover {
+      transform: scale(1.1);
+      background: rgba(128, 219, 102, 0.3);
+    }
+
+    .scroll-icon .icon {
+      font-size: 3rem;
+      /* Colors are applied inline via React component */
     }
    
     @keyframes orbit {

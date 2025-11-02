@@ -1,1 +1,97 @@
-/*  */
+.divider {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #80db66 0%, #6ba876 100%);
+  border-radius: 2px;
+  margin-top: 10px;
+}
+
+.about-image-wrapper {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+}
+
+.about-image {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border: 4px solid #80db66;
+  box-shadow: 0 10px 30px rgba(128, 219, 102, 0.3);
+  position: relative;
+  z-index: 2;
+}
+
+.image-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(128, 219, 102, 0.3) 0%, transparent 70%);
+  animation: pulse-glow 2s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.achievement-card {
+  background: rgba(128, 219, 102, 0.1);
+  border: 1px solid rgba(128, 219, 102, 0.3);
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.achievement-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(128, 219, 102, 0.2);
+  border-color: rgba(128, 219, 102, 0.5);
+  background: rgba(128, 219, 102, 0.15);
+}
+
+.achievement-icon {
+  filter: drop-shadow(0 2px 4px rgba(128, 219, 102, 0.3));
+}
+
+.tech-badge {
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  border: 1px solid rgba(128, 219, 102, 0.2);
+  transition: all 0.3s ease;
+}
+
+.tech-badge:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(128, 219, 102, 0.3);
+  border-color: rgba(128, 219, 102, 0.5);
+}
+
+.tech-badge img {
+  transition: filter 0.3s ease;
+}
+
+.tech-badge:hover img {
+  filter: brightness(1.1);
+}
+
+@media (max-width: 768px) {
+  .about-image {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .tech-badge img {
+    width: 150px !important;
+  }
+}

@@ -72,13 +72,53 @@ export default function Projects() {
     },
   ];
 
+  const [filter, setFilter] = useState("all");
+
+  const categories = ["all", "web", "network", "cybersecurity"];
+
+  const getCategory = (project) => {
+    if (project.title.toLowerCase().includes("network") || project.title.toLowerCase().includes("packet")) return "network";
+    if (project.title.toLowerCase().includes("offensive") || project.title.toLowerCase().includes("defensive")) return "cybersecurity";
+    return "web";
+  };
+
+  const filteredProjects = filter === "all" 
+    ? projects 
+    : projects.filter(p => getCategory(p) === filter);
+
   return (
     <section className="mb-5">
-      <h3 className="fw-bold mb-3" style={{ color: "#80db66" }}>
-        Projects
-      </h3>
+      <div className="text-center mb-5">
+        <h2 className="fw-bold mb-2" style={{ color: "#80db66", fontSize: "2.5rem" }}>
+          My Projects
+        </h2>
+        <div className="divider mx-auto"></div>
+        <p className="mt-3 lead">Showcasing my work across web development, networking, and cybersecurity</p>
+      </div>
+
+      {/* Filter Buttons */}
+      <div className="d-flex justify-content-center gap-2 mb-4 flex-wrap">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setFilter(cat)}
+            className={`btn ${filter === cat ? 'btn-success' : 'btn-outline-success'}`}
+            style={{
+              backgroundColor: filter === cat ? "#80db66" : "transparent",
+              borderColor: "#80db66",
+              color: filter === cat ? "#fff" : "#80db66",
+              textTransform: "capitalize",
+              borderRadius: "25px",
+              padding: "8px 20px",
+            }}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
       <div className="row g-4">
-        {projects.map((p, i) => (
+        {filteredProjects.map((p, i) => (
           <Motion.div
             key={i}
             className="col-md-4"
@@ -86,26 +126,64 @@ export default function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
           >
             <div
-              className="card bg-secondary bg-opacity-25 h-100 border-0 shadow-sm"
+              className="card bg-secondary bg-opacity-25 h-100 border-0 shadow-sm project-card"
               style={{
                 backgroundColor: theme === "dark" ? "#1e1e1e" : "#f9f9f9",
                 color: theme === "dark" ? "#fff" : "#000",
+                transition: "all 0.3s ease",
+                overflow: "hidden",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-10px)";
+                e.currentTarget.style.boxShadow = "0 15px 40px rgba(128, 219, 102, 0.2)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.1)";
               }}
             >
-              <a href={p.live || p.link} target="_blank" rel="noopener noreferrer">
-                <img
-                  src={p.image}
-                  alt={p.title}
-                  className="card-img-top rounded-top"
-                  style={{
-                    width: "100%",
-                    height: "350px",
-                    objectFit: p.fit || "cover",
-                    objectPosition: "center",
-                    cursor: "pointer",
-                  }}
-                />
-              </a>
+              <div style={{ position: "relative", overflow: "hidden" }}>
+                <a href={p.live || p.link} target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    className="card-img-top rounded-top"
+                    style={{
+                      width: "100%",
+                      height: "350px",
+                      objectFit: p.fit || "cover",
+                      objectPosition: "center",
+                      cursor: "pointer",
+                      transition: "transform 0.3s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = "scale(1.05)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = "scale(1)";
+                    }}
+                  />
+                  <div 
+                    className="project-overlay"
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      background: "linear-gradient(to bottom, transparent, rgba(128, 219, 102, 0.1))",
+                      opacity: 0,
+                      transition: "opacity 0.3s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.opacity = "1";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.opacity = "0";
+                    }}
+                  ></div>
+                </a>
+              </div>
 
               <div className="card-body">
                 <h5 className="card-title fw-bold" style={{ color: "#80db66" }}>

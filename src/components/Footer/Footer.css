@@ -1,15 +1,22 @@
-.social-icons a {
-  color: #333;
-  margin: 0 10px;
-  font-size: 1.5rem;
-  transition: 0.3s;
+.footer {
+  background: linear-gradient(135deg, #0f2711 0%, #1a3a1e 100%);
+  border-top: 1px solid rgba(128, 219, 102, 0.2);
+  margin-top: 50px;
 }
 
-.social-icons a:hover {
-  color: #0077b5; /* LinkedIn blue or your theme color */
-  transform: scale(1.1);
+.social-link {
+  transition: all 0.3s ease;
+  display: inline-block;
 }
-.fab {
-  color: #80db66;
-  font-size: 2rem;
+
+.social-link:hover {
+  color: #80db66 !important;
+  transform: translateY(-3px) scale(1.1);
 }
+
+.footer a:hover {
+  color: #80db66 !important;
+  text-decoration: underline !important;
+}
+.text-muted {
+  color: #666666 !important;

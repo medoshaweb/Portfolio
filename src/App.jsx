@@ -10,6 +10,7 @@ import Hero from "./components/Hero/Hero";
 import About from "./components/About/About";
 import Skills from "./components/Skills/Skills";
 import Projects from "./components/Projects";
+import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer/Footer";
 import "./App.css";
@@ -40,6 +41,9 @@ function App() {
       </section>
       <section id="projects" data-aos="flip-left">
         <Projects />
+      </section>
+      <section id="certifications" data-aos="fade-up">
+        <Certifications />
       </section>
       <section id="contact" data-aos="fade-up" style={{ minHeight: "80vh"}}>
         <Contact />

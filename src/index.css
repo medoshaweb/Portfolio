@@ -1,4 +1,12 @@
-
 html {
   scroll-behavior: smooth;
+}
+
+/* Global divider style */
+.divider {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #80db66 0%, #6ba876 100%);
+  border-radius: 2px;
+  margin-top: 10px;
 }
