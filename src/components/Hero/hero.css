@@ -6,6 +6,7 @@
   flex-direction: column;
   background: linear-gradient(1deg, #0f2711, #6ba876, #2c5364);
   color: white;
+  margin-top: 50px;
   text-align: center;
   overflow: hidden;
 }

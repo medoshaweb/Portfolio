@@ -89,7 +89,7 @@ export default function Skills() {
         },
         {
           name: "PHPMyAdmin",
-          icon: <SiPhpmyadmin style={{ color: "#47A248" }} />,
+          icon: <SiPhpmyadmin style={{ color: "#9ea59e" }} />,
         },
         {
           name: "SQL Queries",

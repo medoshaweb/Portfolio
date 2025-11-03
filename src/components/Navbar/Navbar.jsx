@@ -72,7 +72,7 @@ const Navbar = () => {
           <a href="#home" className="navbar-brand fw-bold text-primary fs-4">
             <img
               src={logo}
-              width="70"
+              width="150"
               alt="medoshaweb"
             />
           </a>
