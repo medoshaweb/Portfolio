@@ -5,6 +5,14 @@ html, body {
   box-sizing: border-box;
   overflow-x: hidden;
 }
+body {
+  font-family: "Inter", sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
 
 /* Center content */
 .app-container {
