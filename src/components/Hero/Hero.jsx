@@ -1,7 +1,6 @@
-
 import React from "react";
-import  {motion}  from "framer-motion";
-import {ReactTyped} from "react-typed";
+import { motion } from "framer-motion";
+import { ReactTyped } from "react-typed";
 import {
   FaReact,
   FaNodeJs,
@@ -54,12 +53,134 @@ export default function Hero() {
 
   return (
     <section className="hero-section" id="home">
+      {/* Left Side Decorative Elements */}
+      <div className="hero-side-elements left-side">
+        <motion.div
+          className="floating-code-snippet"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 0.3, x: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        >
+          <div className="code-block">
+            <div className="code-line">
+              <span className="code-keyword">const</span>{" "}
+              <span className="code-variable">developer</span> = {"{"}
+            </div>
+            <div className="code-line code-indent">
+              <span className="code-property">name</span>:{" "}
+              <span className="code-string">'Hailu'</span>,
+            </div>
+            <div className="code-line code-indent">
+              <span className="code-property">role</span>:{" "}
+              <span className="code-string">'Full-Stack'</span>,
+            </div>
+            <div className="code-line code-indent">
+              <span className="code-property">passion</span>:{" "}
+              <span className="code-string">'Coding'</span>
+            </div>
+            <div className="code-line">{"}"}</div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="floating-icon-left"
+          animate={{
+            y: [0, -20, 0],
+            rotate: [0, 5, -5, 0],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          <FaReact size={60} style={{ color: "#61DAFB", opacity: 0.2 }} />
+        </motion.div>
+
+        <motion.div
+          className="floating-icon-left"
+          animate={{
+            y: [0, -15, 0],
+            rotate: [0, -5, 5, 0],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.5,
+          }}
+          style={{ marginTop: "150px" }}
+        >
+          <FaNodeJs size={50} style={{ color: "#339933", opacity: 0.2 }} />
+        </motion.div>
+      </div>
+
+      {/* Right Side Decorative Elements */}
+      <div className="hero-side-elements right-side">
+        <motion.div
+          className="floating-icon-right"
+          animate={{
+            y: [0, -25, 0],
+            rotate: [0, 5, -5, 0],
+          }}
+          transition={{
+            duration: 4.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          <FaNetworkWired
+            size={55}
+            style={{ color: "#F1C40F", opacity: 0.2 }}
+          />
+        </motion.div>
+
+        <motion.div
+          className="floating-icon-right"
+          animate={{
+            y: [0, -20, 0],
+            rotate: [0, -5, 5, 0],
+          }}
+          transition={{
+            duration: 5.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.8,
+          }}
+          style={{ marginTop: "180px" }}
+        >
+          <FaShieldAlt size={60} style={{ color: "#2ECC71", opacity: 0.2 }} />
+        </motion.div>
+
+        <motion.div
+          className="floating-code-snippet right"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 0.3, x: 0 }}
+          transition={{ duration: 1, delay: 0.7 }}
+        >
+          <div className="code-block">
+            <div className="code-line">
+              <span className="code-keyword">function</span>{" "}
+              <span className="code-variable">buildProject</span>() {"{"}
+            </div>
+            <div className="code-line code-indent">
+              <span className="code-keyword">return</span>{" "}
+              <span className="code-string">'excellence'</span>;
+            </div>
+            <div className="code-line">{"}"}</div>
+          </div>
+        </motion.div>
+      </div>
+
       {/* Horizontal scrolling icons container */}
       <div className="scroll-container">
         <div className="scroll-icons-wrapper">
           {[...orbitIcons, ...orbitIcons, ...orbitIcons].map((iconData, i) => (
             <div key={i} className="scroll-icon">
-              <iconData.Icon className="icon" style={{ color: iconData.color }} />
+              <iconData.Icon
+                className="icon"
+                style={{ color: iconData.color }}
+              />
             </div>
           ))}
         </div>
@@ -124,7 +245,7 @@ export default function Hero() {
         </div>
 
         {/* Stats Section */}
-        <motion.div 
+        <motion.div
           className="hero-stats"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

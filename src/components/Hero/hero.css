@@ -1,4 +1,4 @@
- .hero-section {
+.hero-section {
   height: 80vh;
   display: flex;
   justify-content: center;
@@ -8,9 +8,9 @@
   color: white;
   text-align: center;
   overflow: hidden;
-} 
+}
 
- .hero-content {
+.hero-content {
   padding: 20px;
 }
 .profile-pic {
@@ -21,7 +21,7 @@
   margin-bottom: 15px;
   margin-top: 115px;
   border: 4px solid #80db66;
-} 
+}
 .hero-title {
   font-size: 3rem;
   font-weight: 700;
@@ -69,8 +69,6 @@
   box-shadow: 0 6px 20px rgba(128, 219, 102, 0.5);
   transform: translateY(-2px);
 }
-
-
 
 .hero-btn.outline {
   background-color: rgba(255, 255, 255, 0.1);
@@ -135,102 +133,233 @@
   .hero-subtitle {
     font-size: 1.2rem;
   }
-} 
-    .hero-section {
-      position: relative;
-      height: 80vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      overflow: hidden; /* hide overflow for horizontal scroll */
-      background: linear-gradient(1deg, #0f2711, #6ba876, #2c5364);
-    }
+}
+.hero-section {
+  position: relative;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden; /* hide overflow for horizontal scroll */
+  background: linear-gradient(1deg, #0f2711, #6ba876, #2c5364);
+}
 
-    /* Center content */
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+/* Left and Right Side Elements */
+.hero-side-elements {
+  position: absolute;
+  top: 20%;
+  height: 100%;
+  width: 300px;
+  z-index: 1;
+  pointer-events: none;
+}
 
-    /* Profile image */
-    .profile-pic {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 20px;
-      z-index: 3;
-    }
+.left-side {
+  left: 0;
+  padding-left: 30px;
+}
 
-    /* Horizontal scrolling icons container */
-    .scroll-container {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 120px;
-      overflow: hidden;
-      z-index: 1;
-      display: flex;
-      justify-content: flex-end;
-    }
+.right-side {
+  right: 0;
+  padding-right: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
 
-    .scroll-icons-wrapper {
-      display: flex;
-      gap: 40px;
-      align-items: center;
-      height: 100%;
-      will-change: transform;
-      width: fit-content;
-      position: absolute;
-      right: 0;
-      animation: scrollHorizontal 20s linear infinite;
-      white-space: nowrap;
-    }
+.floating-icon-left,
+.floating-icon-right {
+  position: absolute;
+  filter: blur(1px);
+}
 
-    @keyframes scrollHorizontal {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-2520px);
-      }
-    }
+.floating-icon-left {
+  left: 50px;
+}
 
-    /* Rounded circle icons */
-    .scroll-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: rgba(128, 219, 102, 0.2);
-      backdrop-filter: blur(10px);
-      border: 2px solid #80db66;
-      flex-shrink: 0;
-      transition: transform 0.3s ease;
-    }
+.floating-icon-right {
+  right: 50px;
+}
 
-    .scroll-icon:hover {
-      transform: scale(1.1);
-      background: rgba(128, 219, 102, 0.3);
-    }
+/* Code Snippet Styling */
+.floating-code-snippet {
+  position: absolute;
+  font-family: "Courier New", monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(128, 219, 102, 0.2);
+  border-radius: 10px;
+  padding: 15px;
+  max-width: 250px;
+}
 
-    .scroll-icon .icon {
-      font-size: 3rem;
-      /* Colors are applied inline via React component */
-    }
-   
-    @keyframes orbit {
-      0% {
-        transform: rotate(0deg) translateX(250px) rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg) translateX(250px) rotate(-360deg);
-      }
-    }
+.floating-code-snippet.left {
+  top: 20%;
+  left: 20px;
+  animation: float-left 6s ease-in-out infinite;
+}
+
+.floating-code-snippet.right {
+  top: 25%;
+  right: 20px;
+  animation: float-right 7s ease-in-out infinite;
+}
+
+@keyframes float-left {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-15px) translateX(10px);
+  }
+}
+
+@keyframes float-right {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-20px) translateX(-10px);
+  }
+}
+
+.code-block {
+  text-align: left;
+ 
+}
+
+.code-line {
+  color: rgba(224, 233, 227, 0.7);
+  margin-bottom: 3px;
+}
+
+.code-indent {
+  padding-left: 20px;
+}
+
+.code-keyword {
+  color: #80db66;
+  font-weight: 600;
+}
+
+.code-variable {
+  color: #61dafb;
+}
+
+.code-string {
+  color: #f7df1e;
+}
+
+.code-property {
+  color: #80db66;
+}
+
+@media (max-width: 1200px) {
+  .hero-side-elements {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .floating-code-snippet {
+    display: none;
+  }
+
+  .floating-icon-left,
+  .floating-icon-right {
+    display: none;
+  }
+}
+
+/* Center content */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Profile image */
+.profile-pic {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  z-index: 3;
+}
+
+/* Horizontal scrolling icons container */
+.scroll-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.scroll-icons-wrapper {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  height: 100%;
+  will-change: transform;
+  width: fit-content;
+  position: absolute;
+  right: 0;
+  animation: scrollHorizontal 20s linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes scrollHorizontal {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-2520px);
+  }
+}
+
+/* Rounded circle icons */
+.scroll-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: rgba(128, 219, 102, 0.2);
+  backdrop-filter: blur(10px);
+  border: 2px solid #80db66;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.scroll-icon:hover {
+  transform: scale(1.1);
+  background: rgba(128, 219, 102, 0.3);
+}
+
+.scroll-icon .icon {
+  font-size: 3rem;
+  /* Colors are applied inline via React component */
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(250px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(250px) rotate(-360deg);
+  }
+}

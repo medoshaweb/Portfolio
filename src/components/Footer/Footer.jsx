@@ -70,7 +70,7 @@ export default function Footer() {
               </a>
             </div>
             <p className="text-muted small">
-              Email: <a href="mailto:hailugs19742009@gmail.com" style={{ color: "#80db66" }}>hailugs19742009@gmail.com</a>
+              Email: <a href="mailto:lesewamelanesew374@gmail.com" style={{ color: "#80db66" }}>lesewamelanesew374@gmail.com</a>
             </p>
           </div>
         </div>
