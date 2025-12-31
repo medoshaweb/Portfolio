@@ -1,15 +1,4 @@
-// import React from "react";
 
-// export default function Footer() {
-//   return (
-//     <footer className="py-4 text-center text-secondary">
-//       <div>
-//         © {new Date().getFullYear()} Hailu — Network Admin & Full-Stack Dev
-//       </div>
-//       <div>Built with React, Bootstrap & Framer Motion</div>
-//     </footer>
-//   );
-// }
 import React from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./Footer.css";
